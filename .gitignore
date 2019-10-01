@@ -1,3 +1,5 @@
-venv
-instance
+/venv
+/instance
 .env
+/__pycache__
+.vscode
