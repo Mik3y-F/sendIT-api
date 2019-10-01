@@ -1,5 +1,6 @@
 from app import db
 
+
 class User(db.Model):
     """This class represents the users table."""
 
@@ -33,13 +34,15 @@ class Parcel(db.Model):
     __tablename__: str = 'parcels'
 
     id = db.Column(db.Integer, primary_key=True)
-    userID = db.Column(db.Integer, db.ForeignKey(User.id))
-    orderDate = db.Column(
+    senderId = db.Column(db.Integer, db.ForeignKey(User.id))
+    dateSent = db.Column(
         db.DateTime, default=db.func.current_timestamp(),
         onupdate=db.func.current_timestamp())
-    orderStatus = db.Column(db.String(255))
+    delivered = db.Column(db.Boolean)
     presentLocation = db.Column(db.String(255))
     pickupLocation = db.Column(db.String(255))
+    destination = db.Column(db.String(255))
+    parcelWeight = db.Column(db.String(255))
     name = db.Column(db.String(255))
 
     def save(self):
@@ -57,26 +60,3 @@ class Parcel(db.Model):
     def __repr__(self):
         return "<Parcel: {}>".format(self.id)
 
-
-class OrderStatus(db.Model):
-    """This class represents the sources table."""
-
-    __tablename__: str = 'order_statuses'
-
-    id = db.Column(db.Integer, primary_key=True)
-    status = db.Column(db.String(255))
-
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
-
-    @staticmethod
-    def get_all():
-        return OrderStatus.query.all()
-
-    def delete(self):
-        db.session.delete(self)
-        db.session.commit()
-
-    def __repr__(self):
-        return "<OrderStatus: {}>".format(self.status)
