@@ -36,3 +36,9 @@ Here is a list of all endpoints
 | GET  /api/users/userId/parcels | Fetch all parcel delivery orders by a specific user|
 | PUT   /api/v1parcels/parcelId/cancel  | Cancel the specific parcel delivery order  |
 
+
+## Screenshot demos from Postman
+
+![Alt text](assets/get-sendit-api.png?raw=true "GET Example")
+![Alt text](assets/post-sendit-api.png?raw=true "POST EXample")
+
